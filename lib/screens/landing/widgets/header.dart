@@ -1,13 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:stockflow_design_challenge/screens/animations/opacity_tween.dart';
 import 'package:stockflow_design_challenge/shared/extentions.dart';
 
 import '../../../shared/images.dart';
 
-class Header extends StatelessWidget {
+class Header extends StatefulWidget {
   const Header({
     super.key,
   });
+
+  @override
+  State<Header> createState() => _HeaderState();
+}
+
+class _HeaderState extends State<Header> with SingleTickerProviderStateMixin {
+  late AnimationController flightAnimationController;
+  late Animation<double> flightAnimation;
+  late Animation<Offset> offsetAnimation1;
+  late Animation<Offset> offsetAnimation2;
+
+  @override
+  void initState() {
+    super.initState();
+    flightAnimationController = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
+    flightAnimation =
+        Tween<double>(begin: 1, end: 0.0).animate(flightAnimationController);
+    offsetAnimation1 = Tween<Offset>(
+      begin: const Offset(55, 45),
+      end: const Offset(20, 10),
+    ).animate(
+      CurvedAnimation(
+        parent: flightAnimationController,
+        curve: const Interval(0.0, 0.5), // 500ms animation
+      ),
+    );
+    offsetAnimation2 = Tween<Offset>(
+      begin: const Offset(20, 10),
+      end: const Offset(-25, -18),
+    ).animate(
+      CurvedAnimation(
+        parent: flightAnimationController,
+        curve: const Interval(0.5, 1.0), // 500ms animation
+      ),
+    );
+
+    flightAnimationController.forward();
+  }
+
+  @override
+  void dispose() {
+    flightAnimationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +68,7 @@ class Header extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      padding: const EdgeInsets.only(top: 20, left: 25, right: 25),
+      padding: const EdgeInsets.only(top: 20, left: 25),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -28,12 +76,8 @@ class Header extends StatelessWidget {
             flex: 2,
             child: Stack(
               children: [
-                Positioned(
-                  left: 0,
-                  right: 0,
-                  top: 0,
-                  bottom: 0,
-                  child: SizedBox(
+                Positioned.fill(
+                  child: OpacityTween(
                     child: Text(
                       'Plan your \njourney',
                       style: GoogleFonts.workSans(
@@ -46,19 +90,60 @@ class Header extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  left: 160,
-                  top: 46,
-                  child: Align(
-                    child: SizedBox(
+                  left: 180,
+                  top: 55,
+                  child: SizedBox(
+                    width: 164,
+                    height: 125,
+                    child: Image.asset(
+                      flightPathImage,
                       width: 164.41,
                       height: 125.35,
-                      child: Image.asset(
-                        headerArchWitShuttle,
-                        width: 164.41,
-                        height: 125.35,
-                      ),
                     ),
                   ),
+                ),
+                Positioned(
+                  left: 180,
+                  top: 57,
+                  child: SizedBox(
+                    width: 164,
+                    height: 125,
+                    child: Image.asset(
+                      flightPathImage,
+                      width: 164.41,
+                      height: 125.35,
+                      color: Colors.black12,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 195,
+                  top: 25,
+                  child: AnimatedBuilder(
+                      animation: flightAnimation,
+                      builder: (context, child) {
+                        return OpacityTween(
+                          duration: const Duration(milliseconds: 300),
+                          child: Transform.translate(
+                            offset: offsetAnimation1.value,
+                            child: Transform.translate(
+                              offset: offsetAnimation2.value,
+                              child: Transform.rotate(
+                                angle: flightAnimation.value,
+                                child: SizedBox(
+                                  width: 164,
+                                  height: 125,
+                                  child: Image.asset(
+                                    flightImage,
+                                    width: 164.41,
+                                    height: 125.35,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
                 ),
                 Positioned(
                   bottom: 10,

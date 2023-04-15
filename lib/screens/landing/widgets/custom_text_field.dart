@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:stockflow_design_challenge/shared/extentions.dart';
 
@@ -28,7 +29,9 @@ class CustomTextField extends StatelessWidget {
         style: context.textTheme.bodyLarge,
         onTap: onTap,
         decoration: InputDecoration(
-          labelStyle: context.textTheme.bodyLarge,
+          labelStyle: context.textTheme.bodyLarge?.copyWith(
+            fontSize: label == 'DD/MM/YY' ? 16.sp : 14.sp,
+          ),
           labelText: label,
           floatingLabelBehavior: FloatingLabelBehavior.never,
           prefixIcon: Padding(
@@ -41,7 +44,17 @@ class CustomTextField extends StatelessWidget {
           prefixIconConstraints: const BoxConstraints(
             maxWidth: 30,
           ),
-          contentPadding: const EdgeInsets.only(bottom: 10),
+          contentPadding: const EdgeInsets.only(bottom: 11),
+          border: const UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Color.fromRGBO(178, 199, 197, 1),
+            ),
+          ),
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Color.fromRGBO(178, 199, 197, 1),
+            ),
+          ),
         ),
       ),
     );

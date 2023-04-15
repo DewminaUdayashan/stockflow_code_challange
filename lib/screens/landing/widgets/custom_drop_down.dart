@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stockflow_design_challenge/shared/extentions.dart';
 
 class CustomDropdownButton extends StatelessWidget {
@@ -20,6 +21,7 @@ class CustomDropdownButton extends StatelessWidget {
       isExpanded: true,
       underline: Container(
         height: 1,
+        margin: EdgeInsets.only(top: 7.h),
         width: double.infinity,
         decoration: BoxDecoration(
           color: const Color.fromRGBO(178, 199, 197, 1),
@@ -29,10 +31,13 @@ class CustomDropdownButton extends StatelessWidget {
       items: items.map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
-          child: Center(
-            child: Text(
-              value,
-              style: context.textTheme.bodySmall,
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 7.h),
+            child: Center(
+              child: Text(
+                value,
+                style: context.textTheme.bodySmall,
+              ),
             ),
           ),
         );

@@ -115,6 +115,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_screenutil:
+    dependency: "direct main"
+    description:
+      name: flutter_screenutil
+      sha256: "0a122936b450324cbdfd51be0819cc6fcebb093eb65585e9cd92263f7a1a8a39"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.7.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -157,14 +165,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
-  intel_hex:
-    dependency: "direct main"
-    description:
-      name: intel_hex
-      sha256: "5da33590fcbb2b1b7e37acdc3234f894db9316614aedbafff3b9851fb70b3b33"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.2.1"
   intl:
     dependency: transitive
     description:
@@ -317,14 +317,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.5"
-  screen_utils:
-    dependency: "direct main"
-    description:
-      name: screen_utils
-      sha256: "1879d9d5ebba17c571a0c233e810ecfaafd1e559203b7a0ff7b99674249100d6"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.1"
   shared_preferences:
     dependency: transitive
     description:

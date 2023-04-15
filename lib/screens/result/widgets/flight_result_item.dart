@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stockflow_design_challenge/screens/animations/opacity_tween.dart';
 import 'package:stockflow_design_challenge/shared/extentions.dart';
 
@@ -33,7 +34,7 @@ class FlightResultItem extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 16, 20, 5),
+              padding: const EdgeInsets.fromLTRB(27, 17, 27, 5),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -47,11 +48,15 @@ class FlightResultItem extends StatelessWidget {
                           children: [
                             Text(
                               flightResult.airport1Code,
-                              style: context.textTheme.titleLarge,
+                              style: context.textTheme.titleLarge?.copyWith(
+                                fontSize: 28.sp,
+                              ),
                             ),
                             Text(
                               flightResult.airport1,
-                              style: context.textTheme.bodySmall,
+                              style: context.textTheme.bodySmall?.copyWith(
+                                fontSize: 12.sp,
+                              ),
                             ),
                           ],
                         ),
@@ -60,7 +65,7 @@ class FlightResultItem extends StatelessWidget {
                         child: Center(
                           child: Image.asset(
                             flightResult.airlineImage,
-                            width: 53,
+                            width: 53.w,
                           ),
                         ),
                       ),
@@ -71,18 +76,22 @@ class FlightResultItem extends StatelessWidget {
                           children: [
                             Text(
                               flightResult.airport2Code,
-                              style: context.textTheme.titleLarge,
+                              style: context.textTheme.titleLarge?.copyWith(
+                                fontSize: 28.sp,
+                              ),
                             ),
                             Text(
                               flightResult.airport2,
-                              style: context.textTheme.bodySmall,
+                              style: context.textTheme.bodySmall?.copyWith(
+                                fontSize: 12.sp,
+                              ),
                             ),
                           ],
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 24.h),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,11 +103,15 @@ class FlightResultItem extends StatelessWidget {
                           children: [
                             Text(
                               'DATE',
-                              style: context.textTheme.titleSmall,
+                              style: context.textTheme.titleSmall?.copyWith(
+                                fontSize: 12.sp,
+                              ),
                             ),
                             Text(
                               flightResult.date,
-                              style: context.textTheme.bodySmall,
+                              style: context.textTheme.bodySmall?.copyWith(
+                                fontSize: 12.sp,
+                              ),
                             ),
                           ],
                         ),
@@ -110,13 +123,17 @@ class FlightResultItem extends StatelessWidget {
                           children: [
                             Image.asset(
                               ellipseImage,
-                              height: 24,
+                              height: 24.h,
+                              width: 53.w,
+                              color: const Color.fromRGBO(0, 110, 212, 1),
                             ),
                             const SizedBox(height: 5),
                             Text(
                               '${flightResult.flightTime} ${flightResult.time}',
-                              style: context.textTheme.titleSmall
-                                  ?.copyWith(fontSize: 10),
+                              style: context.textTheme.titleSmall?.copyWith(
+                                fontSize: 10.sp,
+                                color: const Color.fromRGBO(54, 54, 54, 1),
+                              ),
                             ),
                           ],
                         ),
@@ -128,11 +145,15 @@ class FlightResultItem extends StatelessWidget {
                           children: [
                             Text(
                               'FLIGHT NO',
-                              style: context.textTheme.titleSmall,
+                              style: context.textTheme.titleSmall?.copyWith(
+                                fontSize: 12.sp,
+                              ),
                             ),
                             Text(
                               flightResult.flightNumber,
-                              style: context.textTheme.bodySmall,
+                              style: context.textTheme.bodySmall?.copyWith(
+                                fontSize: 12.sp,
+                              ),
                             ),
                           ],
                         ),
@@ -144,14 +165,14 @@ class FlightResultItem extends StatelessWidget {
             ),
             const Divider(),
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 10, 20, 20),
+              padding: const EdgeInsets.fromLTRB(0, 17, 27, 17),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
                     'Ticket Price',
                     style: context.textTheme.titleSmall?.copyWith(
-                      fontSize: 10,
+                      fontSize: 10.sp,
                       color: const Color.fromRGBO(172, 172, 172, 1),
                     ),
                   ),
@@ -160,7 +181,7 @@ class FlightResultItem extends StatelessWidget {
                     flightResult.price,
                     style: context.textTheme.bodySmall?.copyWith(
                       fontWeight: FontWeight.w500,
-                      fontSize: 14,
+                      fontSize: 14.sp,
                     ),
                   ),
                 ],
